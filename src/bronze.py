@@ -48,15 +48,15 @@ class Bronze:
             listing_url = os.getenv("BRONZE_LISTING_URL", "").strip()
 
             if not base_url:
-                raise ValueError("A variavel BRONZE_BASE_URL nao foi definida no .env.")
+                raise ValueError("A variável BRONZE_BASE_URL não foi definida no .env.")
 
             if not target_months_raw:
                 raise ValueError(
-                    "A variavel BRONZE_TARGET_MONTHS nao foi definida no .env."
+                    "A variável BRONZE_TARGET_MONTHS não foi definida no .env."
                 )
 
             if not listing_url:
-                raise ValueError("A variavel BRONZE_LISTING_URL nao foi definida no .env.")
+                raise ValueError("A variável BRONZE_LISTING_URL não foi definida no .env.")
 
             target_months = [
                 month.strip() for month in target_months_raw.split(",") if month.strip()
@@ -74,7 +74,7 @@ class Bronze:
 
             return base_url, target_months, listing_url
         except Exception as exc:
-            raise ValueError(f"Erro ao ler a configuracao Bronze no .env: {exc}") from exc
+            raise ValueError(f"Erro ao ler a configuração Bronze no .env: {exc}") from exc
 
     def list_available_files(self, listing_url: str) -> list[str]:
         try:
@@ -93,7 +93,7 @@ class Bronze:
 
             return sorted(keys)
         except Exception as exc:
-            raise ConnectionError(f"Erro ao listar os arquivos disponiveis: {exc}") from exc
+            raise ConnectionError(f"Erro ao listar os arquivos disponíveis: {exc}") from exc
 
     def filter_files_by_month(self, file_keys: list[str], target_month: str) -> list[str]:
         try:
@@ -133,7 +133,6 @@ class Bronze:
                 )
                 selected_files.extend(month_files)
 
-            # Remove duplicados preservando a ordem final por nome.
             return sorted(set(selected_files))
         except Exception as exc:
             raise ValueError(f"Erro ao selecionar os arquivos alvo: {exc}") from exc

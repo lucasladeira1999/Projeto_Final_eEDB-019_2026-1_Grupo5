@@ -1,0 +1,73 @@
+version: 2
+
+models:
+  - name: dim_station
+    description: Dimensão de estações de retirada e devolução do sistema Santander Cycles.
+    columns:
+      - name: station_key
+        description: Chave substituta da estação.
+        tests:
+          - unique
+          - not_null
+      - name: station_id
+        description: Identificador natural da estação na origem.
+      - name: station_name
+        description: Nome da estação.
+
+  - name: dim_date
+    description: Dimensão temporal por hora para análise operacional.
+    columns:
+      - name: date_key
+        description: Chave substituta da dimensão de data e hora.
+        tests:
+          - unique
+          - not_null
+      - name: full_date
+        description: Timestamp truncado na hora de início da viagem.
+
+  - name: dim_duration_bucket
+    description: Dimensão de faixas de duração de viagem.
+    columns:
+      - name: duration_bucket_key
+        description: Chave substituta da faixa de duração.
+        tests:
+          - unique
+          - not_null
+      - name: bucket_label
+        description: Classificação da duração em curta, media ou longa.
+        tests:
+          - accepted_values:
+              values: ['curta', 'media', 'longa']
+
+  - name: fact_trip
+    description: Fato de viagens com referências para dimensões de estação, tempo e duração.
+    columns:
+      - name: trip_key
+        description: Chave substituta da viagem.
+        tests:
+          - unique
+          - not_null
+      - name: rental_id
+        description: Identificador da corrida de bike.
+        tests:
+          - not_null
+      - name: start_station_key
+        description: FK da estação de origem.
+        tests:
+          - not_null
+      - name: end_station_key
+        description: FK da estação de destino.
+        tests:
+          - not_null
+      - name: date_key
+        description: FK da dimensão temporal.
+        tests:
+          - not_null
+      - name: duration_bucket_key
+        description: FK da dimensão de duração.
+        tests:
+          - not_null
+      - name: duration_seconds
+        description: Duração da viagem em segundos.
+        tests:
+          - not_null
