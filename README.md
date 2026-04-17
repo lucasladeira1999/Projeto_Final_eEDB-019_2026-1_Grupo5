@@ -99,13 +99,11 @@ A macro customizada **`classify_duration`** categoriza cada viagem:
 │   ├── expectations/           # Suite com 7 expectativas
 │   └── checkpoints/            # Checkpoint executável
 ├── scripts/
-│   ├── load_raw.py             # Download + carga para raw.trips
+|   |-- download_raw.py         # Download dos CSVs para data/raw
+|   |-- load_raw.py             # Carga dos CSVs em raw.trips
 │   └── run_validations.py      # Execução do checkpoint GE
-├── src/
-│   └── bronze.py               # Classe Bronze (download de CSVs)
 ├── terraform/                  # IaC com provider Docker
 ├── docker-compose.yml
-├── main.py
 ├── requirements.txt
 └── .env.example
 ```

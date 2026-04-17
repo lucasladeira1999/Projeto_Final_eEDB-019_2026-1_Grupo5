@@ -2,7 +2,6 @@ import argparse
 import csv
 import os
 import re
-import sys
 from datetime import datetime
 from pathlib import Path
 from typing import Iterable
@@ -10,12 +9,10 @@ from typing import Iterable
 import psycopg2
 from psycopg2.extras import execute_values
 
+from download_raw import download_raw_files
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 RAW_DIR = BASE_DIR / "data" / "raw"
-if str(BASE_DIR) not in sys.path:
-    sys.path.insert(0, str(BASE_DIR))
-
-from src.bronze import Bronze
 
 
 def normalize_column_name(name: str) -> str:
@@ -160,11 +157,6 @@ def load_files_into_postgres(file_paths: list[Path]) -> int:
         conn.commit()
 
     return total_rows
-
-
-def download_raw_files() -> list[Path]:
-    bronze = Bronze()
-    return bronze.run()
 
 
 def discover_existing_raw_files() -> list[Path]:
