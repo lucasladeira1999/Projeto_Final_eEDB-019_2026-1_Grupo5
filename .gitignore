@@ -1,47 +1,36 @@
 # Python
 __pycache__/
 *.py[cod]
-*.pyd
-*.so
-.Python
-
-# Virtual environments
+*.egg-info/
 .venv/
 venv/
-env/
-ENV/
 
-# Tooling caches
-.uv-cache/
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
-.coverage
-.coverage.*
-htmlcov/
-
-# Build artifacts
-build/
-dist/
-*.egg-info/
-
-# Local environment files
+# Env
 .env
-.env.local
-.env.*.local
 
-# Logs
-logs/
-*.log
+# Logs and outputs
+logs/*
+!logs/
+!logs/.gitkeep
 
-# Downloaded and generated data
-data/raw/*
-!data/raw/.gitkeep
+# Data
+/data/raw/*
+!/data/raw/.gitkeep
 
-# IDE and OS files
+# dbt
+/dbt_project/target/
+/dbt_project/dbt_packages/
+
+# Great Expectations generated files
+/great_expectations/uncommitted/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfvars
+!*.tfvars.example
+
+# IDE
 .vscode/
 .idea/
-*.swp
-*.swo
-Thumbs.db
-.DS_Store

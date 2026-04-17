@@ -1,0 +1,5 @@
+postgres_user     = "bike_user"
+postgres_password = "bike_pass"
+postgres_db       = "bike_elt"
+airflow_user      = "airflow"
+airflow_password  = "airflow"

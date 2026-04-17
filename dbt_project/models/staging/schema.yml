@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: stg_trips
+    description: Camada silver com limpeza, tipagem e enriquecimento temporal das viagens brutas.
+    columns:
+      - name: rental_id
+        description: Identificador único da viagem na fonte.
+      - name: start_datetime
+        description: Data e hora de início da viagem.
+      - name: end_datetime
+        description: Data e hora de término da viagem.
+      - name: start_station_id
+        description: Identificador da estação de origem.
+      - name: end_station_id
+        description: Identificador da estação de destino.
+      - name: duration_seconds
+        description: Duração da viagem em segundos após limpeza de dados.
