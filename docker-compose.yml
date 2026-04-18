@@ -25,7 +25,6 @@ x-airflow-common: &airflow-common
   volumes:
     - ./airflow/dags:/opt/airflow/dags
     - ./scripts:/opt/airflow/scripts
-    - ./src:/opt/airflow/src
     - ./great_expectations:/opt/airflow/great_expectations
     - ./dbt_project:/opt/airflow/dbt_project
     - ./data:/opt/airflow/data
