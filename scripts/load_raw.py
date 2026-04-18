@@ -1,5 +1,6 @@
 import argparse
 import csv
+import logging
 import os
 import re
 from datetime import datetime
@@ -13,6 +14,32 @@ from download_raw import download_raw_files
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 RAW_DIR = BASE_DIR / "data" / "raw"
+LOG_DIR = BASE_DIR / "logs"
+LOG_FILE = LOG_DIR / "bronze.log"
+
+
+def setup_logger() -> logging.Logger:
+    try:
+        LOG_DIR.mkdir(parents=True, exist_ok=True)
+
+        logger = logging.getLogger("load_raw")
+        logger.setLevel(logging.INFO)
+
+        if not logger.handlers:
+            file_handler = logging.FileHandler(LOG_FILE, encoding="utf-8")
+            formatter = logging.Formatter(
+                "%(asctime)s | %(levelname)s | %(message)s",
+                datefmt="%Y-%m-%d %H:%M:%S",
+            )
+            file_handler.setFormatter(formatter)
+            logger.addHandler(file_handler)
+
+        return logger
+    except Exception as exc:
+        raise OSError(f"Erro ao configurar o logger de load raw: {exc}") from exc
+
+
+LOGGER = setup_logger()
 
 
 def normalize_column_name(name: str) -> str:
@@ -38,7 +65,7 @@ def parse_datetime(value: str):
         return None
 
     value = value.strip()
-    for fmt in ("%d/%m/%Y %H:%M", "%d/%m/%Y %H:%M:%S", "%Y-%m-%d %H:%M:%S"):
+    for fmt in ("%d/%m/%Y %H:%M", "%d/%m/%Y %H:%M:%S", "%Y-%m-%d %H:%M", "%Y-%m-%d %H:%M:%S"):
         try:
             return datetime.strptime(value, fmt)
         except ValueError:
@@ -86,23 +113,27 @@ def iter_csv_rows(file_path: Path) -> Iterable[tuple]:
                 reader = csv.DictReader(file_obj)
                 for row in reader:
                     normalized = {normalize_column_name(k): v for k, v in row.items()}
-                    rental_id = parse_int(normalized.get("rental_id"))
+                    rental_id = parse_int(normalized.get("rental_id") or normalized.get("number"))
                     if rental_id is None:
                         continue
 
                     start_date = parse_datetime(normalized.get("start_date", ""))
                     end_date = parse_datetime(normalized.get("end_date", ""))
+                    duration = parse_int(normalized.get("duration"))
+                    if duration is None:
+                        duration_ms = parse_int(normalized.get("total_duration_ms"))
+                        duration = duration_ms // 1000 if duration_ms is not None else None
 
                     yield (
                         rental_id,
                         start_date,
                         end_date,
-                        parse_int(normalized.get("start_station_id")),
-                        parse_int(normalized.get("end_station_id")),
-                        normalized.get("start_station_name"),
-                        normalized.get("end_station_name"),
-                        parse_int(normalized.get("bike_id")),
-                        parse_int(normalized.get("duration")),
+                        parse_int(normalized.get("start_station_id") or normalized.get("start_station_number")),
+                        parse_int(normalized.get("end_station_id") or normalized.get("end_station_number")),
+                        normalized.get("start_station_name") or normalized.get("start_station"),
+                        normalized.get("end_station_name") or normalized.get("end_station"),
+                        parse_int(normalized.get("bike_id") or normalized.get("bike_number")),
+                        duration,
                         file_path.name,
                     )
             break
@@ -142,17 +173,27 @@ def load_files_into_postgres(file_paths: list[Path]) -> int:
         with conn.cursor() as cursor:
             ensure_raw_table(cursor)
             for file_path in file_paths:
+                LOGGER.info("Iniciando carga do arquivo %s", file_path.name)
                 batch = []
+                file_rows = 0
                 for row in iter_csv_rows(file_path):
                     batch.append(row)
                     if len(batch) >= 1000:
                         execute_values(cursor, insert_sql, batch)
                         total_rows += len(batch)
+                        file_rows += len(batch)
                         batch = []
 
                 if batch:
                     execute_values(cursor, insert_sql, batch)
                     total_rows += len(batch)
+                    file_rows += len(batch)
+
+                LOGGER.info(
+                    "Carga concluida para %s com %s linhas carregadas/atualizadas",
+                    file_path.name,
+                    file_rows,
+                )
 
         conn.commit()
 
@@ -173,19 +214,33 @@ def main() -> None:
 
     downloaded_files: list[Path] = []
 
-    if not args.load_only:
-        downloaded_files = download_raw_files()
-        print(f"Arquivos baixados: {len(downloaded_files)}")
+    try:
+        if not args.load_only:
+            downloaded_files = download_raw_files()
+            print(f"Arquivos baixados: {len(downloaded_files)}")
+            LOGGER.info("Download finalizado com %s arquivo(s)", len(downloaded_files))
 
-    if args.download_only:
-        return
+        if args.download_only:
+            return
 
-    files_to_load = downloaded_files or discover_existing_raw_files()
-    if not files_to_load:
-        raise FileNotFoundError("Nenhum CSV encontrado em data/raw para carregar.")
+        files_to_load = downloaded_files or discover_existing_raw_files()
+        if not files_to_load:
+            raise FileNotFoundError("Nenhum CSV encontrado em data/raw para carregar.")
 
-    loaded_rows = load_files_into_postgres(files_to_load)
-    print(f"Linhas carregadas/atualizadas em raw.trips: {loaded_rows}")
+        LOGGER.info(
+            "Iniciando carga raw.trips com %s arquivo(s): %s",
+            len(files_to_load),
+            ", ".join(file_path.name for file_path in files_to_load),
+        )
+        loaded_rows = load_files_into_postgres(files_to_load)
+        LOGGER.info(
+            "Carga raw.trips concluida com %s linhas carregadas/atualizadas",
+            loaded_rows,
+        )
+        print(f"Linhas carregadas/atualizadas em raw.trips: {loaded_rows}")
+    except Exception as exc:
+        LOGGER.exception("Falha na carga raw.trips: %s", exc)
+        raise
 
 
 if __name__ == "__main__":

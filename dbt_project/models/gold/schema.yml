@@ -37,7 +37,8 @@ models:
         description: Classificação da duração em curta, media ou longa.
         tests:
           - accepted_values:
-              values: ['curta', 'media', 'longa']
+              arguments:
+                values: ['curta', 'media', 'longa']
 
   - name: fact_trip
     description: Fato de viagens com referências para dimensões de estação, tempo e duração.
@@ -71,3 +72,6 @@ models:
         description: Duração da viagem em segundos.
         tests:
           - not_null
+
+
+
