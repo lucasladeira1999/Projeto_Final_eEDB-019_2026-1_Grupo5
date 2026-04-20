@@ -8,6 +8,9 @@ x-airflow-common: &airflow-common
     AIRFLOW__CORE__EXECUTOR: LocalExecutor
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
     AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://${POSTGRES_USER:-bike_user}:${POSTGRES_PASSWORD:-bike_pass}@postgres:5432/${POSTGRES_DB:-bike_elt}
+    AIRFLOW__FAB__SECRET_KEY: 'airflow'
+    AIRFLOW__WEBSERVER__SECRET_KEY: 'airflow'
+    AIRFLOW__WEBSERVER__SESSION_BACKEND: 'securecookie'
     AIRFLOW__WEBSERVER__EXPOSE_CONFIG: 'true'
     AIRFLOW__WEBSERVER__WORKERS: '2'
     AIRFLOW__WEBSERVER__WEB_SERVER_MASTER_TIMEOUT: '300'
@@ -62,16 +65,16 @@ services:
       - -c
       - |
         mkdir -p /opt/airflow/logs /opt/airflow/data/raw && \
-        chown -R 50000:0 /opt/airflow/logs /opt/airflow/data && \
-        # airflow db migrate é o comando recomendado para Airflow 2.11.x.
-        su airflow -c "airflow db migrate" && \
-        su airflow -c "airflow users create \
-          --username ${AIRFLOW_USER:-airflow} \
+        chown -R 50000:0 /opt/airflow/logs /opt/airflow/data /opt/airflow/dbt_project && \
+        
+        su airflow -c "AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=$${AIRFLOW__DATABASE__SQL_ALCHEMY_CONN} airflow db migrate" && \
+        su airflow -c "AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=$${AIRFLOW__DATABASE__SQL_ALCHEMY_CONN} airflow users create \
+          --username $${AIRFLOW_USER:-airflow} \
           --firstname Airflow \
           --lastname Admin \
           --role Admin \
-          --email ${AIRFLOW_ADMIN_EMAIL:-airflow@example.com} \
-          --password ${AIRFLOW_PASSWORD:-airflow}"
+          --email $${AIRFLOW_ADMIN_EMAIL:-airflow@example.com} \
+          --password $${AIRFLOW_PASSWORD:-airflow}"
 
   airflow-webserver:
     <<: *airflow-common
