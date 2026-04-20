@@ -323,3 +323,96 @@ O checkpoint gera relatório em `logs/validations/` e Data Docs navegáveis.
 | Pelo menos 2 dashboards | Metabase | ✅ |
 | Docker reprodutível com `docker compose up` | Docker Compose | ✅ |
 | Terraform com variáveis e outputs | Terraform | ✅ |
+
+---
+
+##  Dashboards Analíticos
+
+Os dashboards foram desenvolvidos no Metabase com base nas tabelas do schema `gold`, respondendo diretamente às perguntas de negócio.
+
+---
+
+### Dashboard 1 — Demanda e Comportamento de Uso
+
+---
+
+#### Quais estações têm maior volume de retiradas e devoluções por hora do dia?
+
+Este gráfico mostra as estações com maior volume de movimentação ao longo do dia.
+
+**Insight:**
+- Estações centrais apresentam maior fluxo.
+- Indica pontos críticos para disponibilidade de bicicletas.
+
+![Retiradas](images/Quais_estacoes_tem_maior_numero_de_retiradas.png)
+
+![Devolucoes](images/Quais_estacoes_tem_maior_numero_de_devolucoes.png)
+
+---
+
+#### Quais rotas (origem → destino) são mais frequentes e em quais períodos?
+
+Este gráfico identifica os trajetos mais utilizados pelos usuários.
+
+**Insight:**
+- Existem rotas recorrentes indicando deslocamentos urbanos consistentes.
+- Possível padrão casa → trabalho.
+
+![Rotas](images/Quais_rotas_sao_mais_frequentes_quais_periodos.png)
+
+---
+
+#### Como a duração média das viagens varia por dia da semana?
+
+Analisa o comportamento do usuário ao longo da semana.
+
+**Insight:**
+- Dias úteis possuem viagens mais curtas.
+- Fins de semana apresentam maior duração média.
+
+![Duracao](images/Como_a_duracao_varia_por_dia_da_semana.png)
+
+---
+
+### Dashboard 2 — Eficiência Operacional e Balanceamento
+
+---
+
+#### Existem estações cronicamente desbalanceadas — muito mais retirada do que devolução?
+
+Este gráfico compara retiradas e devoluções por estação.
+
+**Insight:**
+- Estações com saldo positivo indicam falta de bikes.
+- Estações com saldo negativo indicam acúmulo.
+- Necessidade clara de rebalanceamento.
+
+![Desbalanceamento](images/Existem_estacoes_cronicamente_desbalanceadas.png)
+
+---
+
+#### Quais estações têm baixo uso e poderiam ser realocadas?
+
+Identifica estações com baixa utilização.
+
+**Insight:**
+- Pode indicar má localização ou baixa demanda.
+- Sugere oportunidades de realocação estratégica.
+
+![Baixo uso](images/Quais_estacoes_tem_baixo_uso.png)
+
+---
+
+## Conclusão
+
+A análise permitiu identificar padrões claros de uso e gargalos operacionais no sistema Santander Cycles.
+
+Principais descobertas:
+
+- A demanda é concentrada em horários de pico
+- Existem rotas recorrentes representando fluxos urbanos importantes
+- Algumas estações estão cronicamente desbalanceadas
+- Há estações com baixo uso que podem ser realocadas
+
+Esses insights permitem uma operação mais eficiente e orientada a dados.
+
