@@ -332,7 +332,7 @@ Os dashboards foram desenvolvidos no Metabase com base nas tabelas do schema `go
 
 ---
 
-### Dashboard 1 — Demanda e Comportamento de Uso
+### Gráficos — Demanda e Comportamento de Uso
 
 ---
 
@@ -374,7 +374,7 @@ Analisa o comportamento do usuário ao longo da semana.
 
 ---
 
-### Dashboard 2 — Eficiência Operacional e Balanceamento
+### Gráficos — Eficiência Operacional e Balanceamento
 
 ---
 
@@ -415,4 +415,100 @@ Principais descobertas:
 - Há estações com baixo uso que podem ser realocadas
 
 Esses insights permitem uma operação mais eficiente e orientada a dados.
+
+---
+
+### Dashboard 1 — Padrões de Uso e Comportamento do Sistema
+
+Este dashboard apresenta uma análise aprofundada do comportamento dos usuários no sistema Santander Cycles, permitindo identificar padrões de uso ao longo do tempo e apoiar decisões estratégicas.
+
+---
+
+#### Visão geral do dashboard
+
+O painel integra diferentes análises em uma única visualização:
+
+- Comparação entre dias úteis e finais de semana
+- Distribuição de viagens ao longo das horas do dia
+- Concentração de uso nas estações
+- Perfil de duração das viagens
+- Evolução do volume ao longo do tempo
+
+---
+
+#### Principais insights
+
+- A demanda é maior em dias úteis, indicando uso voltado ao deslocamento diário
+- Há picos claros de utilização nos horários de manhã e final da tarde
+- O sistema apresenta concentração de uso em poucas estações
+- A maioria das viagens é de curta duração
+- O volume de viagens apresenta comportamento consistente ao longo do tempo
+
+---
+
+#### Visualização do Dashboard
+
+![Dashboard Padrões de Uso](images/Dashboard1.png)
+
+---
+
+### Conclusão do Dashboard
+
+A análise evidencia padrões cíclicos de utilização e concentração da demanda, permitindo uma melhor compreensão do comportamento dos usuários.
+
+Esses insights são essenciais para:
+
+- Planejamento de rebalanceamento de bicicletas  
+- Otimização da distribuição das estações  
+- Melhoria da experiência do usuário  
+- Apoio à tomada de decisão estratégica
+
+### Dashboard 2 — Análise de Performance e Eficiência Operacional
+
+Este dashboard apresenta uma visão consolidada da performance do sistema Santander Cycles, destacando volume de uso, comportamento dos usuários e concentração da demanda nas estações.
+
+---
+
+#### Visão geral do dashboard
+
+O painel integra diferentes indicadores operacionais em uma única visualização:
+
+- Volume total de viagens (KPI)
+- Duração média das viagens
+- Distribuição de viagens ao longo do dia
+- Ranking das estações mais utilizadas
+- Perfil das viagens por faixa de duração
+- Concentração do uso nas principais estações
+
+---
+
+#### Principais insights
+
+- O sistema apresenta alto volume de utilização, com forte concentração em determinadas estações  
+- A maioria das viagens é de curta duração, indicando uso para deslocamentos rápidos  
+- Existem horários de pico bem definidos ao longo do dia  
+- Poucas estações concentram grande parte das viagens, evidenciando dependência de regiões específicas  
+
+---
+
+#### Visualização do Dashboard
+
+![Dashboard Performance](images/Dashboard2.png)
+
+---
+
+### Conclusão do Dashboard
+
+A análise evidencia que o sistema possui um padrão consistente de uso, com concentração de demanda e predominância de viagens curtas.
+
+Esses resultados são importantes para:
+
+- Otimização da distribuição de bicicletas  
+- Planejamento de expansão do sistema  
+- Melhoria da eficiência operacional  
+- Suporte à tomada de decisão estratégica
+
+---
+
+
 
