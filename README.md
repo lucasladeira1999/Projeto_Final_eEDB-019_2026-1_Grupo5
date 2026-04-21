@@ -485,7 +485,7 @@ O painel integra diferentes indicadores operacionais em uma única visualizaçã
 #### Principais insights
 
 - O sistema apresenta alto volume de utilização, com forte concentração em determinadas estações  
-- A maioria das viagens é de curta duração, indicando uso para deslocamentos rápidos  
+- A maioria das viagens é de média duração 
 - Existem horários de pico bem definidos ao longo do dia  
 - Poucas estações concentram grande parte das viagens, evidenciando dependência de regiões específicas  
 
