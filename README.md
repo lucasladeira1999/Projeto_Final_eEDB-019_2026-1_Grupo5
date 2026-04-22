@@ -402,13 +402,13 @@ Este gráfico compara retiradas e devoluções por estação.
 - Estações com saldo positivo acumulam bicicletas
 - Necessidade de estratégias de rebalanceamento
 
-### Número de devoluções por estação
-
-![Desbalanceamento](images/Numero-de-devolucoes-por-estacao.png)
-
-### Número de retiradas de bicicletas
+### Número de retirada de bicicleta por estação
 
 ![Desbalanceamento](images/Numero-de-retiradas-de-bicicletas.png)
+
+### Número de saldo de bicicletas por estação
+
+![Desbalanceamento](images/Numero-de-saldos-de-bicicletas-por-estacao.png)
 
 ---
 
@@ -427,16 +427,13 @@ Este gráfico identifica estações com baixo nível de utilização.
 
 ## Conclusão
 
-A análise permitiu identificar padrões claros de uso e gargalos operacionais no sistema Santander Cycles.
+A análise dos dados permitiu identificar padrões importantes no uso do sistema Santander Cycles, incluindo:
 
-Principais descobertas:
-
-- A demanda é concentrada em horários de pico
-- Existem rotas recorrentes representando fluxos urbanos importantes
-- Algumas estações estão cronicamente desbalanceadas
-- Há estações com baixo uso que podem ser realocadas
-
-Esses insights permitem uma operação mais eficiente e orientada a dados.
+- Picos de utilização em horários de deslocamento urbano  
+- Rotas recorrentes entre regiões específicas  
+- Diferença de comportamento entre dias úteis e finais de semana  
+- Existência de desequilíbrios operacionais entre estações  
+- Estações com baixo uso que podem ser realocadas  
 
 ---
 
