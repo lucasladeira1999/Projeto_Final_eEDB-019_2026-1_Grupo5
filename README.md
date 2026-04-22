@@ -402,13 +402,13 @@ Este gráfico compara retiradas e devoluções por estação.
 - Estações com saldo positivo acumulam bicicletas
 - Necessidade de estratégias de rebalanceamento
 
-### Número de retirada de bicicleta por estação
+### Número de retirada de bicicletas por estação
 
 ![Desbalanceamento](images/Numero-de-retiradas-de-bicicletas.png)
 
 ### Número de saldo de bicicletas por estação
 
-![Desbalanceamento](images/Numero-de-saldos-de-bicicletas-por-estacao.png)
+![Desbalanceamento](images/Numero-de-saldos-de-bicletas-por-estacao.png)
 
 ---
 
