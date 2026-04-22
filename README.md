@@ -341,12 +341,18 @@ Os dashboards foram desenvolvidos no Metabase com base nas tabelas do schema `go
 Este gráfico mostra as estações com maior volume de movimentação ao longo do dia.
 
 **Insight:**
-- Estações centrais apresentam maior fluxo.
-- Indica pontos críticos para disponibilidade de bicicletas.
+- Alto volume de utilização do sistema
+- Picos de uso nos horários de deslocamento urbano
+- Maior utilização em dias úteis
+- Estações com maior concentração de retiradas
 
-![Retiradas](images/Quais_estacoes_tem_maior_numero_de_retiradas.png)
+### Retiradas por hora do dia
 
-![Devolucoes](images/Quais_estacoes_tem_maior_numero_de_devolucoes.png)
+![Retiradas](images/Total-de-retiradas-por-hora-do-dia.png)
+
+### Devolução por hora do dia
+
+![Devolucoes](images/Total-de-devolucao-por-hora-do-dia.png)
 
 ---
 
@@ -355,10 +361,18 @@ Este gráfico mostra as estações com maior volume de movimentação ao longo d
 Este gráfico identifica os trajetos mais utilizados pelos usuários.
 
 **Insight:**
-- Existem rotas recorrentes indicando deslocamentos urbanos consistentes.
-- Possível padrão casa → trabalho.
+- Existência de rotas recorrentes entre regiões específicas
+- Presença de rotas bidirecionais (fluxo constante)
+- Uso recreativo em rotas locais (ex: parques)
+- Picos de utilização em horários de ida e volta do trabalho
 
-![Rotas](images/Quais_rotas_sao_mais_frequentes_quais_periodos.png)
+### Rotas mais frequentes
+
+![Rotas](images/Rotas-mais-frequentes.png)
+
+### Rotas mais frequentes em quais períodos
+
+![Períodos](images/Quais-rotas-sao-mais-frequentes-em-quais-periodos.png)
 
 ---
 
@@ -367,10 +381,11 @@ Este gráfico identifica os trajetos mais utilizados pelos usuários.
 Analisa o comportamento do usuário ao longo da semana.
 
 **Insight:**
-- Dias úteis possuem viagens mais curtas.
-- Fins de semana apresentam maior duração média.
+- Viagens mais curtas durante dias úteis
+- Aumento da duração média nos finais de semana
+- Indicação de uso para lazer fora do período de trabalho
 
-![Duracao](images/Como_a_duracao_varia_por_dia_da_semana.png)
+![Duracao](images/Como-a-duracao-media-das-viagens-varia-por-dia-da-semana.png)
 
 ---
 
@@ -383,23 +398,30 @@ Analisa o comportamento do usuário ao longo da semana.
 Este gráfico compara retiradas e devoluções por estação.
 
 **Insight:**
-- Estações com saldo positivo indicam falta de bikes.
-- Estações com saldo negativo indicam acúmulo.
-- Necessidade clara de rebalanceamento.
+- Estações com saldo negativo apresentam falta de bicicletas
+- Estações com saldo positivo acumulam bicicletas
+- Necessidade de estratégias de rebalanceamento
 
-![Desbalanceamento](images/Existem_estacoes_cronicamente_desbalanceadas.png)
+### Número de devoluções por estação
+
+![Desbalanceamento](images/Numero-de-devolucoes-por-estacao.png)
+
+### Número de retiradas de bicicletas
+
+![Desbalanceamento](images/Numero-de-retiradas-de-bicicletas.png)
 
 ---
 
 #### Quais estações têm baixo uso e poderiam ser realocadas?
 
-Identifica estações com baixa utilização.
+Este gráfico identifica estações com baixo nível de utilização.
 
 **Insight:**
-- Pode indicar má localização ou baixa demanda.
-- Sugere oportunidades de realocação estratégica.
+- Estações com pouca atividade podem ser realocadas
+- Possível baixa demanda ou localização inadequada
+- Oportunidade de otimização da rede
 
-![Baixo uso](images/Quais_estacoes_tem_baixo_uso.png)
+![Baixo uso](images/Quais-estacoes-tem-baixo-uso-e-poderiam-ser-realocadas.png)
 
 ---
 
@@ -418,95 +440,101 @@ Esses insights permitem uma operação mais eficiente e orientada a dados.
 
 ---
 
-### Dashboard 1 — Padrões de Uso e Comportamento do Sistema
+### Dashboard 1 — Dashboard — Visão Operacional do Sistema
 
-Este dashboard apresenta uma análise aprofundada do comportamento dos usuários no sistema Santander Cycles, permitindo identificar padrões de uso ao longo do tempo e apoiar decisões estratégicas.
-
----
-
-#### Visão geral do dashboard
-
-O painel integra diferentes análises em uma única visualização:
-
-- Comparação entre dias úteis e finais de semana
-- Distribuição de viagens ao longo das horas do dia
-- Concentração de uso nas estações
-- Perfil de duração das viagens
-- Evolução do volume ao longo do tempo
-
----
-
-#### Principais insights
-
-- A demanda é maior em dias úteis, indicando uso voltado ao deslocamento diário
-- Há picos claros de utilização nos horários de manhã e final da tarde
-- O sistema apresenta concentração de uso em poucas estações
-- A maioria das viagens é de curta duração
-- O volume de viagens apresenta comportamento consistente ao longo do tempo
-
----
-
-#### Visualização do Dashboard
-
-![Dashboard Padrões de Uso](images/Dashboard1.png)
-
----
-
-### Conclusão do Dashboard
-
-A análise evidencia padrões cíclicos de utilização e concentração da demanda, permitindo uma melhor compreensão do comportamento dos usuários.
-
-Esses insights são essenciais para:
-
-- Planejamento de rebalanceamento de bicicletas  
-- Otimização da distribuição das estações  
-- Melhoria da experiência do usuário  
-- Apoio à tomada de decisão estratégica
-
-### Dashboard 2 — Análise de Performance e Eficiência Operacional
-
-Este dashboard apresenta uma visão consolidada da performance do sistema Santander Cycles, destacando volume de uso, comportamento dos usuários e concentração da demanda nas estações.
+Este dashboard apresenta uma visão consolidada do funcionamento do sistema Santander Cycles, permitindo analisar volume de uso, comportamento dos usuários e pontos de maior demanda.
 
 ---
 
 #### Visão geral do dashboard
 
-O painel integra diferentes indicadores operacionais em uma única visualização:
+O painel reúne indicadores essenciais para acompanhamento da operação:
 
-- Volume total de viagens (KPI)
+- Volume total de viagens realizadas
 - Duração média das viagens
-- Distribuição de viagens ao longo do dia
-- Ranking das estações mais utilizadas
-- Perfil das viagens por faixa de duração
-- Concentração do uso nas principais estações
+- Distribuição das viagens ao longo do dia
+- Distribuição por dia da semana
+- Ranking das estações com maior número de retiradas
 
 ---
 
 #### Principais insights
 
-- O sistema apresenta alto volume de utilização, com forte concentração em determinadas estações  
-- A maioria das viagens é de média duração 
-- Existem horários de pico bem definidos ao longo do dia  
-- Poucas estações concentram grande parte das viagens, evidenciando dependência de regiões específicas  
+- O sistema apresenta um alto volume de utilização, com mais de **550 mil viagens registradas**
+- A duração média das viagens é relativamente baixa, indicando uso voltado para deslocamentos rápidos
+- Há concentração de uso em determinados horários do dia, evidenciando picos operacionais
+- Dias úteis apresentam maior volume de viagens, reforçando o uso para deslocamento urbano
+- Algumas estações concentram grande parte das retiradas, indicando pontos críticos da operação
 
 ---
 
 #### Visualização do Dashboard
 
-![Dashboard Performance](images/Dashboard2.png)
+![Dashboard Padrões de Uso](images/Dashboard1.jpeg)
 
 ---
 
 ### Conclusão do Dashboard
 
-A análise evidencia que o sistema possui um padrão consistente de uso, com concentração de demanda e predominância de viagens curtas.
+A análise operacional demonstra que o sistema possui um padrão consistente de uso, com forte concentração em horários de pico e em determinadas estações.
 
-Esses resultados são importantes para:
+Esses resultados são fundamentais para:
 
-- Otimização da distribuição de bicicletas  
-- Planejamento de expansão do sistema  
-- Melhoria da eficiência operacional  
-- Suporte à tomada de decisão estratégica
+- Planejamento de redistribuição de bicicletas  
+- Identificação de estações críticas  
+- Otimização da disponibilidade de bikes  
+- Melhoria da experiência do usuário  
+
+Além disso, os dados evidenciam que o sistema é amplamente utilizado como meio de transporte rápido e eficiente no contexto urbano.
+
+---
+
+### Dashboard 2 — Análise de Rotas e Inteligência de Fluxo
+
+Este dashboard apresenta uma análise detalhada dos fluxos de deslocamento no sistema Santander Cycles, permitindo identificar padrões de uso, equilíbrio entre estações e comportamento das rotas mais utilizadas.
+
+---
+
+#### Visão geral do dashboard
+
+O painel integra diferentes análises estratégicas:
+
+- Principais rotas origem → destino
+- Perfil de uso por duração das viagens
+- Estações com excesso e falta de bicicletas
+- Identificação de desequilíbrio operacional
+- Fluxos mais recorrentes no sistema
+
+---
+
+#### Principais insights
+
+- A maioria das viagens é de **curta e média duração**, indicando uso frequente para deslocamentos urbanos rápidos  
+- Existem estações com **alto déficit de bicicletas**, onde a retirada supera a devolução  
+- Algumas estações apresentam **acúmulo de bicicletas**, indicando excesso de devoluções  
+- O sistema apresenta **rotas recorrentes**, evidenciando padrões previsíveis de deslocamento  
+- O desequilíbrio entre retirada e devolução reforça a necessidade de **rebalanceamento da frota**
+
+---
+
+#### Visualização do Dashboard
+
+![Dashboard Performance](images/Dashboard2.jpeg)
+
+---
+
+### Conclusão do Dashboard
+
+A análise de rotas demonstra que o sistema possui padrões claros de fluxo entre regiões específicas, com desequilíbrios operacionais relevantes entre estações.
+
+Esses resultados permitem:
+
+- Identificar pontos críticos para redistribuição de bicicletas  
+- Antecipar demandas em determinadas regiões  
+- Melhorar o planejamento logístico do sistema  
+- Tornar a operação mais eficiente e orientada a dados  
+
+Além disso, o entendimento das rotas mais frequentes contribui diretamente para decisões estratégicas de expansão e otimização da rede.
 
 ---
 
