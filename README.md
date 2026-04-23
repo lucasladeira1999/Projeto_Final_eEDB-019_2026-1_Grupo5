@@ -502,7 +502,7 @@ O painel integra diferentes análises estratégicas:
 
 ---
 
-#### Video explicativo do projeto
+### Video explicativo do projeto
 
 Este projeto usa dados do Santander Cycles para aplicar conceitos de engenharia de dados.
 Transformamos dados brutos em informação confiável com dbt e garantimos qualidade com Great Expectations.
