@@ -517,5 +517,20 @@ Além disso, o entendimento das rotas mais frequentes contribui diretamente para
 
 ---
 
+### Entregáveis
 
+#### Video explicativo do projeto
 
+Este projeto usa dados do Santander Cycles para aplicar conceitos de engenharia de dados.
+Transformamos dados brutos em informação confiável com dbt e garantimos qualidade com Great Expectations.
+O resultado é uma base estruturada, pronta para análise e tomada de decisão.
+
+https://www.youtube.com/watch?v=EpV3Nom-r_g
+
+#### Documentação da Colaboração do Projeto
+
+[Documento de Colaboração](colab.md)
+
+#### Link do Repositório
+
+https://github.com/lucasladeira1999/Projeto_Final_eEDB-019_2026-1_Grupo5/blob/main/README.md
