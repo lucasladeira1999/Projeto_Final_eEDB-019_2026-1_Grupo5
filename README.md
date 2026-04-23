@@ -520,6 +520,14 @@ O painel integra diferentes análises estratégicas:
 
 ---
 
+#### Video explicativo do projeto
+
+Este projeto usa dados do Santander Cycles para aplicar conceitos de engenharia de dados.
+Transformamos dados brutos em informação confiável com dbt e garantimos qualidade com Great Expectations.
+O resultado é uma base estruturada, pronta para análise e tomada de decisão.
+
+https://www.youtube.com/watch?v=EpV3Nom-r_g
+
 ### Conclusão do Dashboard
 
 A análise de rotas demonstra que o sistema possui padrões claros de fluxo entre regiões específicas, com desequilíbrios operacionais relevantes entre estações.
